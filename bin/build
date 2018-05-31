@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+export CHORDIIRC=.chordrc
+
+# Fail immediately if any errors occur
+set -e
+
+echo "Cleaning up..."
+
+rm -rf build
+mkdir build
+
+echo
+echo "Generating PDFs:"
+
+for filename in source/*.crd
+do
+  basename=$(basename $filename)
+  songname="${basename%.*}"
+  echo "- $songname"
+  chordii $filename > build/$songname.ps
+  pstopdf build/$songname.ps
+done
+
+rm build/*.ps
+
+echo
+echo "Generating Songbook..."
+
+gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=build/songbook.pdf build/*.pdf
+
+echo
+echo "Done!"
+
