@@ -1,0 +1,3 @@
+brew 'chordii'
+brew 'gs'
+
