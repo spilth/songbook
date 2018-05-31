@@ -7,7 +7,7 @@ A chords & lyrics songbook generated from ChordPro files
 To check out the project and build the songbook:
 
 ```bash
-$ git clone songbook
+$ git clone git@github.com:spilth/songbook.git
 $ cd songbook
 $ bin/setup
 $ bin/build
